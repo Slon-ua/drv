@@ -10,3 +10,5 @@ src/
 ./_UI/.gradle/
 ./_UI/build/
 
+./Appium/.gradle/
+./Appium/build/
