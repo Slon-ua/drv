@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'io.qameta.allure' version '2.8.1'
+    id 'io.franzbecker.gradle-lombok' version '5.0.0'
 }
 
 group 'com.driveroo'
@@ -13,6 +14,9 @@ repositories {
 ext {
     allureVersion = '2.14.0'
     junitVersion = '5.7.1'
+    selenideVersion = '5.23.0'
+    restAssuredVersion ='4.4.0'
+    jacksonVersion = '2.13.0'
 }
 
 sourceCompatibility = '8'
@@ -23,7 +27,7 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    testImplementation('com.codeborne:selenide:5.23.0')
+    testImplementation("com.codeborne:selenide:${selenideVersion}")
     testImplementation("io.qameta.allure:allure-selenide:${allureVersion}")
     testImplementation('org.assertj:assertj-core:3.20.2')
     testImplementation('org.hamcrest:hamcrest:2.2')
@@ -31,6 +35,11 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    testImplementation ("io.rest-assured:rest-assured:${restAssuredVersion}")
+
+    implementation ("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+
 }
 
 test {
