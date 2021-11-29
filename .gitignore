@@ -2,9 +2,10 @@
 .idea/
 build/
 out/
-./src/
 allure-results/
 .allure/
+./src/
+
 
 ./API/.gradle/
 ./API/build/
