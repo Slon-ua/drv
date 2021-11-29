@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> <!-- здесь указивается куда logback будет кидать свои логи. STDOUT - означает консоль. Так же можнов  file, database, elasticsearch -->
+        <encoder>
+            <charset>utf-8</charset>
+            <Pattern>%d %-5level %msg%n</Pattern>  <!-- описывает то как он будет выводить  -->
+        </encoder>
+    </appender>  <!--  -->
+
+    <logger name="com.driveroo.api" level="INFO" additivity="false">  <!-- тут мы в нейм указиваем точное название папки в которой находится проэкт и этот xml -->
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
