@@ -6,10 +6,9 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 
+import static com.codeborne.selenide.Condition.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPageTest {
@@ -48,6 +47,9 @@ public class MainPageTest {
         mainPage.seeAllToolsButton.click();
 
         $("#products-page").shouldBe(visible);
+        $("div:nth-child(1)>div>:nth-child(1)>h3>a").shouldHave(href("/space1"));
+        $("div:nth-child(1)>div>:nth-child(1)>h3>a").shouldHave(text("Space"));
+
 
         assertEquals("All Developer Tools and Products by JetBrains", Selenide.title());
     }

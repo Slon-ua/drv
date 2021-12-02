@@ -1,6 +1,8 @@
 package com.driveroo.api.services;
 
 import com.driveroo.api.assertions.AssertableResponse;
+import com.driveroo.api.payload.UserPayload;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.http.Cookies;
@@ -26,20 +28,24 @@ public class ApiService {
                 .given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-//                  .header("Authorization","Bearer "+LoginToken)
-//                  .cookie("@@@@#1","121")
+                  .header("Authorization","Bearer "+LoginToken)
+                  .cookie("@@@@#1","121")
 //                  .cookie("@@@@#2","122")
 //                  .cookie("@@@@#3","122")
 //                  .cookies("Set-Cookie","Bearer4 : 124")
 //                  .cookies("Set-Cookie","Bearer5 : 125")
 //                  .cookies("Set-Cookie","Bearer6 : 126")
-//                .filters(
-//                        new RequestLoggingFilter(LogDetail.BODY)
+//
+                .filters(
+                        new AllureRestAssured()
+//                        ,new RequestLoggingFilter(LogDetail.BODY)
+                        ,new RequestLoggingFilter(LogDetail.URI)
 //                        ,new RequestLoggingFilter(LogDetail.COOKIES)
+//                        ,new RequestLoggingFilter()
 //                        ,new ResponseLoggingFilter(LogDetail.BODY)
 //                        ,new ResponseLoggingFilter(LogDetail.STATUS)
 //                        ,new ResponseLoggingFilter(LogDetail.COOKIES)
-//                        )
+                        )
                   ;
     }
 
@@ -60,9 +66,9 @@ public class ApiService {
                 .when()
                 .post("/userApi/fleets/login");
 
-//        Map<Object, Object>  resp1 = new AssertableResponse(response).getValueLikeJSON("$");
+//        Object resp1 = new AssertableResponse(response).getValueLikeJSON("$");
 //        Map<Object, Object> token = new AssertableResponse(response).getValueLikeJSON("$");
-        String qwe = response.jsonPath().getString("token");
+//        String qwe = response.jsonPath().getString("token");
 //        loginToken = new AssertableResponse(response).getValueLikeString("$");
         LoginToken = response.jsonPath().getString("token");
         Cookies CookieName = response.getDetailedCookies();
@@ -71,7 +77,7 @@ public class ApiService {
 
 //        System.out.println("### 1 = "+response);
 //        System.out.println("### 2 = "+resp1);
-        System.out.println("### 3 = "+qwe);
+//        System.out.println("### 3 = "+qwe);
 //        System.out.println("### 4 = "+token);
         System.out.println("### 5 = "+LoginToken);
         System.out.println("### 6 = "+CookieName);
