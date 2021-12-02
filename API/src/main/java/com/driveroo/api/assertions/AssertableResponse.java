@@ -1,6 +1,7 @@
 package com.driveroo.api.assertions;
 
 import com.driveroo.api.conditions.Condition;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ public class AssertableResponse { //декоратор
 
     private final Response response;
 
+    @Step ("API response should have {condition} ")
     public AssertableResponse shouldHave(Condition condition){
         log.info("About to check condition [{}]",condition);
         condition. check(response);
@@ -27,6 +29,16 @@ public class AssertableResponse { //декоратор
     public <T> T asPojo(Class<T> tClass){
         return response.as(tClass);
     }
+
+    public Map<String, String> getAllCookies(String s){ //Выведит все куки из ответа от сервера
+        return response.getCookies();
+    }
+
+    public String getCookiesByName(String jsonPath, String name){  //Выведит куки по имени,  из ответа от сервера
+        return response.getCookie(name);
+    }
+
+
 
 
 
@@ -97,11 +109,4 @@ public class AssertableResponse { //декоратор
         return  response.jsonPath().getBoolean(jsonPath);  // присвоит переменной значение либо всего JSON, либо конкретного значения, если его передать в функцию -> jsonPath (id) из JSON респона с сервера (5ceda0dcee11cb0001002ddb)
     }
 
-    public Map<String, String> getAllCookies(String s){ //Выведит все куки из ответа от сервера
-        return response.getCookies();
-    }
-
-    public String getCookiesByName(String jsonPath, String name){  //Выведит куки по имени,  из ответа от сервера
-        return response.getCookie(name);
-    }
 }

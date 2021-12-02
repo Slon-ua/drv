@@ -2,6 +2,7 @@ package com.driveroo.api.services;
 
 import com.driveroo.api.assertions.AssertableResponse;
 import com.driveroo.api.payload.UserPayload;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,7 +19,7 @@ public class UserApiService extends ApiService {
 //                .filters(new RequestLoggingFilter(LogDetail.BODY), new ResponseLoggingFilter(LogDetail.BODY), new ResponseLoggingFilter(LogDetail.STATUS),  new ResponseLoggingFilter(LogDetail.COOKIES))
 //                ;
 //    }
-
+    @Step("Send request for userLogin")
     public AssertableResponse userLogin(UserPayload userPayload){
 //        log.info("============================================================");
         log.info("============================================================ \n About to send request with data to Login user {}",userPayload);

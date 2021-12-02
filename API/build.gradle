@@ -46,14 +46,45 @@ dependencies {
 
     implementation ("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
 
+    implementation 'org.aeonbits.owner:owner:1.0.12'
+
+    implementation 'io.qameta.allure:allure-rest-assured:2.14.0'
+
 }
 
 test {
     useJUnitPlatform()
+
+//    useJUnitPlatform{
+//        includeTags "prod", "smoke"
+//        excludeTags "smoke"
+//    }
+
+//    task slowTest(type: Test) {
+//        useJUnitPlatform {
+//            includeTags 'smoke'
+//        }
+//    }
+
+//    excludeGroups << excludedGroups
+//    includeGroups << includedGroups
+
+    systemProperties System.getProperties()   //проброс комант, присвоение переменных из консоли в Gradle
+
+    testLogging {
+//        showStandardStreams = true //для отражения ответа RestAssured  https://blog.mrhaki.com/
+        events "PASSED", "FAILED", "SKIPPED"
+        exceptionFormat = 'full'  //более полный лог об ошибке
+    }
+
+    test.outputs.upToDateWhen {false} //строчка отвечает за то, что код будет запускатся всегда, даже при успешном прохождении. Тут же настраивается частота проведения тестов
 }
+
 allure {
     autoconfigure = true
     version = "${allureVersion}"
+    aspectjweaver = true
+    configuration = 'compile'  // указывает чтоб аллюр отрабатывал на уровне всего проекта
 
     useJUnit5 {
         version = "${allureVersion}"
