@@ -1,4 +1,4 @@
-package com.example._ui.test;
+package com.driveroo.ui.test;
 
 import com.codeborne.selenide.SelenideElement;
 
