@@ -13,11 +13,11 @@ allure-results/
 ./API/allure-results/
 ./API/.allure/
 
-./_UI/.gradle/
-./_UI/build/
-./_UI/out/
-./_UI/allure-results/
-./_UI/.allure/
+./UI/.gradle/
+./UI/build/
+./UI/out/
+./UI/allure-results/
+./UI/.allure/
 
 ./Appium/.gradle/
 ./Appium/build/

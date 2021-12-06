@@ -11,6 +11,8 @@ public interface ProjectConfig extends Config{
     @Key("${env}.host")
     String host();
 
+    @Key("${env}.hostUI")
+    String hostUI();
 
 
     @Key("servers.${env}.hostname")
@@ -24,7 +26,6 @@ public interface ProjectConfig extends Config{
 
     @Key("servers.${env}.password")
     String password();
-
 
 
 }
